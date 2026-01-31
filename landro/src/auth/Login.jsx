@@ -89,31 +89,7 @@ export default function Login({ onSuccess, onSwitchToSignup }) {
         <img src={Ellipse} alt="ellipse" style={{position: 'absolute', right: -120, top: -120, width: 640, opacity: 0.22, filter: 'brightness(1.03) saturate(1.25)', mixBlendMode: 'screen'}} />
         <div style={{position: 'absolute', left: '50%', transform: 'translateX(-50%)', bottom: 24, color: 'rgba(255,255,255,0.6)', fontSize: 12}}>• • •</div>
 
-        {/* Centered white card carousel inside the green area */}
-        <div style={{position: 'absolute', left: '50%', top: '35%', transform: 'translate(-50%, -50%)', padding: 8}}>
-          <div style={{width: 450, height: 300, overflow: 'hidden', borderRadius: 10}}>
-            <div style={{display: 'flex', width: `${slides.length * 100}%`, transform: `translateX(-${slideIndex * (100 / slides.length)}%)`, transition: 'transform 600ms ease'}}>
-              {slides.map((s) => (
-                <div key={s.id} style={{flex: `0 0 ${100 / slides.length}%`, boxSizing: 'border-box', padding: 16, display: 'flex', alignItems: 'center'}}>
-                  <div style={{flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff', borderRadius: 10, padding: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.06)'}}>
-                    <div style={{textAlign: 'left'}}>
-                      <div style={{fontSize: 16, fontWeight: 700, color: '#0f1720'}}>{s.title}</div>
-                      <div style={{fontSize: 13, color: '#53606a', marginTop: 6}}>{s.subtitle}</div>
-                    </div>
-                    <div style={{width: 120, height: 96, borderRadius: 8, background: '#f3f6f7', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                      <img src={s.img} alt={s.title} style={{maxWidth: '100%', maxHeight: '100%'}} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{textAlign: 'center', marginTop: 12, color: 'rgba(255,255,255,0.95)'}}>
-            <div style={{fontSize: 24, fontWeight: 700, marginBottom: 8}}>Discover & Invest in Land with LandRo</div>
-            <div style={{fontSize: 13, color: 'rgba(255,255,255,0.85)'}}>Buy and sell land plots with verified sellers, interactive maps, and transparent pricing.</div>
-          </div>
-        </div>
+        
       </div>
     </div>
   );
