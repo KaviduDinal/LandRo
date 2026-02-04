@@ -1,34 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef } from 'react'
 import './App.css'
+import Login from './auth/Login'
+import Signup from './auth/Signup'
+import Landpage from './Components/Landpage'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [view, setView] = useState(null) // null | 'login' | 'signup'
+  const [user, setUser] = useState(null)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [animClass, setAnimClass] = useState('')
+  const pendingView = useRef(null)
+
+  const startTransition = (target) => {
+    if (isAnimating) return
+    pendingView.current = target
+    // choose direction: if going from login->signup use forward, else back
+    const forward = (view === 'login' && target === 'signup') || (view === null && target === 'login')
+    setAnimClass(forward ? 'flip-forward' : 'flip-back')
+    setIsAnimating(true)
+    // at half animation swap view (300ms)
+    setTimeout(() => {
+      setView(pendingView.current)
+    }, 300)
+    // clear at end
+    setTimeout(() => {
+      setIsAnimating(false)
+      setAnimClass('')
+      pendingView.current = null
+    }, 600)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{padding:20}}>
+      <header style={{display:'flex',gap:12,alignItems:'center',marginBottom:20}}>
+        <h1>LandRo</h1>
+        <nav>
+          <button onClick={() => setView('login')}>Login</button>
+          <button onClick={() => setView('signup')}>Sign up</button>
+          <button onClick={() => { setView(null); setUser(null); }}>Home</button>
+        </nav>
+      </header>
+
+      <main>
+        {user ? (
+          <div>
+            <h2>Welcome, {user.email}</h2>
+          </div>
+        ) : (
+          <div className={`auth-flip-wrapper`}>
+            <div className={`auth-flip-card ${animClass}`}>
+              <div className="auth-view">
+                {view === null && <Landpage onLogin={() => startTransition('login')} onSignup={() => startTransition('signup')} />}
+                {view === 'login' && <Login onSuccess={(u) => setUser(u)} onSwitchToSignup={() => startTransition('signup')} />}
+                {view === 'signup' && <Signup onSuccess={(u) => setUser(u)} onSwitchToLogin={() => startTransition('login')} />}
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
   )
 }
 
