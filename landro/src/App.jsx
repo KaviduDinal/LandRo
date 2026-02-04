@@ -1,11 +1,34 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
-import Login from './assets/auth/Login'
-import Signup from './assets/auth/Signup'
+import Login from './auth/Login'
+import Signup from './auth/Signup'
+import Landpage from './Components/Landpage'
 
 function App() {
   const [view, setView] = useState(null) // null | 'login' | 'signup'
   const [user, setUser] = useState(null)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [animClass, setAnimClass] = useState('')
+  const pendingView = useRef(null)
+
+  const startTransition = (target) => {
+    if (isAnimating) return
+    pendingView.current = target
+    // choose direction: if going from login->signup use forward, else back
+    const forward = (view === 'login' && target === 'signup') || (view === null && target === 'login')
+    setAnimClass(forward ? 'flip-forward' : 'flip-back')
+    setIsAnimating(true)
+    // at half animation swap view (300ms)
+    setTimeout(() => {
+      setView(pendingView.current)
+    }, 300)
+    // clear at end
+    setTimeout(() => {
+      setIsAnimating(false)
+      setAnimClass('')
+      pendingView.current = null
+    }, 600)
+  }
 
   return (
     <div style={{padding:20}}>
@@ -23,13 +46,15 @@ function App() {
           <div>
             <h2>Welcome, {user.email}</h2>
           </div>
-        ) : view === 'login' ? (
-          <Login onSuccess={(u) => setUser(u)} />
-        ) : view === 'signup' ? (
-          <Signup />
         ) : (
-          <div>
-            <p>Click Login or Sign up to open authentication UI.</p>
+          <div className={`auth-flip-wrapper`}>
+            <div className={`auth-flip-card ${animClass}`}>
+              <div className="auth-view">
+                {view === null && <Landpage onLogin={() => startTransition('login')} onSignup={() => startTransition('signup')} />}
+                {view === 'login' && <Login onSuccess={(u) => setUser(u)} onSwitchToSignup={() => startTransition('signup')} />}
+                {view === 'signup' && <Signup onSuccess={(u) => setUser(u)} onSwitchToLogin={() => startTransition('login')} />}
+              </div>
+            </div>
           </div>
         )}
       </main>

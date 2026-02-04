@@ -1,3 +1,18 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* single smooth gradient background to avoid visible vertical bands */
+background: linear-gradient(160deg, #1C4532 0%, #2f6b4f 50%, #ffffff 100%);
+
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #1C4532;
+}
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -17,6 +32,7 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+
 
 @keyframes logo-spin {
   from {
@@ -40,3 +56,26 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Flip transition for auth views */
+.auth-flip-wrapper {
+  perspective: 1200px;
+}
+.auth-flip-card {
+  transform-style: preserve-3d;
+}
+@keyframes flip-forward {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(180deg); }
+}
+@keyframes flip-back {
+  0% { transform: rotateY(180deg); }
+  50% { transform: rotateY(90deg); }
+  100% { transform: rotateY(0deg); }
+}
+.flip-forward { animation: flip-forward 600ms ease-in-out forwards; }
+.flip-back { animation: flip-back 600ms ease-in-out forwards; }
+
+/* smoothly hide overflow during flip */
+.auth-view { backface-visibility: hidden; }
