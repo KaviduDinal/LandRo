@@ -32,12 +32,12 @@ function App() {
 
   return (
     <div style={{padding:20}}>
-      <header style={{display:'flex', alignItems:'center', justifyContent: 'space-between', gap:12, marginBottom:20, width: '100%'}}>
+      <header style={{display:'flex', alignItems:'center', justifyContent: 'space-between', gap:12, marginBottom:20, width: '100%', position: 'sticky', top: 0, zIndex: 9999, background: '#fff', padding: '12px 20px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)'}}>
         <h1 style={{margin:0}}>LandRo</h1>
-        <nav style={{marginLeft: 'auto', display: 'flex', gap: 12}}>
-          <button onClick={() => setView('login')}>Login</button>
-          <button onClick={() => setView('signup')}>Sign up</button>
-          <button onClick={() => { setView(null); setUser(null); }}>Home</button>
+        <nav style={{marginLeft: 'auto', display: 'flex', gap: 12, alignItems: 'center'}}>
+          <button onClick={() => setView('login')} style={{padding: '10px 20px', fontSize: 16, borderRadius: 8, border: '1px solid transparent', background: 'transparent', color: '#1C4532', fontWeight: 700, cursor: 'pointer'}}>Login</button>
+          <button onClick={() => setView('signup')} style={{padding: '10px 22px', fontSize: 16, borderRadius: 8, border: 'none', background: '#1C4532', color: '#fff', fontWeight: 700, cursor: 'pointer'}}>Sign up</button>
+          <button onClick={() => { setView(null); setUser(null); }} style={{padding: '10px 20px', fontSize: 16, borderRadius: 8, border: '1px solid transparent', background: 'transparent', color: '#1C4532', fontWeight: 700, cursor: 'pointer'}}>Home</button>
         </nav>
       </header>
 

@@ -89,6 +89,10 @@ export default function Login({ onSuccess, onSwitchToSignup }) {
       <div style={{flex: 1, position: 'relative', background: '#1C4532', overflow: 'hidden', minHeight: 360}}>
         <img src={Ellipse} alt="ellipse" style={{position: 'absolute', right: -120, top: -120, width: 640, opacity: 0.22, filter: 'brightness(1.03) saturate(1.25)', mixBlendMode: 'screen'}} />
         <ImageCarousel />
+        {/* See <attachments> above for file contents. You may not need to search or read the file again. */}
+        <div style={{position: 'absolute', left: '50%', transform: 'translateX(-50%)', bottom: 56, textAlign: 'center', color: '#fff'}}>
+          <h3 style={{margin: 0, fontSize: 18, fontWeight: 700}}>Discover & Invest in Land with LandRo</h3>
+        </div>
         <div style={{position: 'absolute', left: '50%', transform: 'translateX(-50%)', bottom: 24, color: 'rgba(255,255,255,0.6)', fontSize: 12}}>• • •</div>
 
       </div>
