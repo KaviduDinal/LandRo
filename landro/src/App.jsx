@@ -32,9 +32,9 @@ function App() {
 
   return (
     <div style={{padding:20}}>
-      <header style={{display:'flex',gap:12,alignItems:'center',marginBottom:20}}>
-        <h1>LandRo</h1>
-        <nav>
+      <header style={{display:'flex', alignItems:'center', justifyContent: 'space-between', gap:12, marginBottom:20, width: '100%'}}>
+        <h1 style={{margin:0}}>LandRo</h1>
+        <nav style={{marginLeft: 'auto', display: 'flex', gap: 12}}>
           <button onClick={() => setView('login')}>Login</button>
           <button onClick={() => setView('signup')}>Sign up</button>
           <button onClick={() => { setView(null); setUser(null); }}>Home</button>
