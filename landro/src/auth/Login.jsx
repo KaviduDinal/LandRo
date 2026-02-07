@@ -6,6 +6,7 @@ import Ellipse from '../assets/authassets/Ellipse1.png'
 import GoogleIcon from '../assets/authassets/gooogle.png'
 import FacebookIcon from '../assets/authassets/facebook (1).png'
 import location from '../assets/authassets/location.png'
+import ImageCarousel from '../Components/ImageCarousel'
 
 export default function Login({ onSuccess, onSwitchToSignup }) {
   const [email, setEmail] = useState("");
@@ -85,11 +86,11 @@ export default function Login({ onSuccess, onSwitchToSignup }) {
         </div>
       </div>
 
-      <div style={{flex: 1, position: 'relative', background: '#1C4532', overflow: 'hidden'}}>
+      <div style={{flex: 1, position: 'relative', background: '#1C4532', overflow: 'hidden', minHeight: 360}}>
         <img src={Ellipse} alt="ellipse" style={{position: 'absolute', right: -120, top: -120, width: 640, opacity: 0.22, filter: 'brightness(1.03) saturate(1.25)', mixBlendMode: 'screen'}} />
+        <ImageCarousel />
         <div style={{position: 'absolute', left: '50%', transform: 'translateX(-50%)', bottom: 24, color: 'rgba(255,255,255,0.6)', fontSize: 12}}>• • •</div>
 
-        
       </div>
     </div>
   );
