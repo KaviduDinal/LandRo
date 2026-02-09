@@ -79,7 +79,7 @@ export default function Signup({ onSuccess, onSwitchToLogin }) {
           <div style={{display: 'flex', flexDirection: 'column', gap: 10, marginTop: 12}}>
             <button aria-label="Sign up with Google" style={{height: 44, width: '100%', borderRadius: 8, border: '1px solid #e6e9ed', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10}}>
               <img src={GoogleIcon} alt="Google" style={{width: 20, height: 20}} />
-              <span style={{fontSize: 14, fontWeight: 600, color: '#222'}}>Continue with Google</span>
+              <span style={{fontSize: 14, fontWeight: 600, color: '#222'}}>Coontinue with Google</span>
             </button>
             <button aria-label="Sign up with Facebook" style={{height: 44, width: '100%', borderRadius: 8, border: '1px solid #e6e9ed', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10}}>
               <img src={FacebookIcon} alt="Facebook" style={{width: 20, height: 20}} />
